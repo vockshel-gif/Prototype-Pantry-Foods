@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pantry Foods Admin</title>
+  <link rel="icon" href="../assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <a class="side-logo" href="#dashboard"><img src="../assets/logo.svg" alt="Pantry Foods" width="170" height="44"></a>
+    <span class="side-label">Admin panel</span>
+    <nav class="side-nav">
+      <a href="#dashboard" data-view="dashboard">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        Dashboard</a>
+      <a href="#products" data-view="products">
+        <svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8l9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+        Products</a>
+      <a href="#categories" data-view="categories">
+        <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+        Categories</a>
+      <a href="#orders" data-view="orders">
+        <svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2Z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
+        Orders <span class="nav-count" id="pending-count"></span></a>
+      <a href="#delivery" data-view="delivery">
+        <svg viewBox="0 0 24 24"><path d="M2 6h12v10H2Z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+        Delivery</a>
+      <a href="#settings" data-view="settings">
+        <svg viewBox="0 0 24 24"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+        Settings</a>
+    </nav>
+    <a class="side-store" href="../" target="_blank">View storefront ↗</a>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+      <h1 id="page-title">Dashboard</h1>
+      <div class="topbar-right">
+        <span class="proto-pill">Prototype · no login</span>
+        <span class="admin-user"><span class="avatar">A</span>Admin</span>
+      </div>
+    </header>
+    <section class="view" id="view"></section>
+  </div>
+  <div class="side-scrim" id="side-scrim"></div>
+
+  <!-- Product editor -->
+  <dialog class="dlg dlg-wide" id="product-dialog">
+    <form id="product-form" novalidate>
+      <header class="dlg-head">
+        <h2 id="pf-title">Add product</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Close">✕</button>
+      </header>
+      <div class="dlg-body pf-grid">
+        <div class="fields two">
+          <label class="span2">Product name *<input name="name" required maxlength="80"></label>
+          <label>Category *<select name="category" required></select></label>
+          <label>Pack size / unit<input name="unit" placeholder="e.g. 500 g · 10 pcs" maxlength="40"></label>
+          <label>Price (Rs.) *<input name="price" type="number" min="1" step="0.01" required></label>
+          <label>Sale price (Rs.)<input name="salePrice" type="number" min="0" step="0.01" placeholder="Empty = no discount"></label>
+          <label>Stock *<input name="stock" type="number" min="0" step="1" required></label>
+          <label>Storage<select name="storage"><option>Frozen</option><option>Chilled</option><option>Ambient</option></select></label>
+          <label class="span2">Description<textarea name="description" rows="3" maxlength="400"></textarea></label>
+          <div class="span2 checks">
+            <label class="check"><input type="checkbox" name="active"> Visible in store</label>
+            <label class="check"><input type="checkbox" name="bestSeller"> Best seller</label>
+            <label class="check"><input type="checkbox" name="isNew"> New arrival</label>
+          </div>
+          <p class="form-error span2" id="pf-error" hidden></p>
+        </div>
+        <div class="pf-media">
+          <span class="lbl">Preview</span>
+          <div id="pf-preview"></div>
+          <div class="pf-img-actions">
+            <label class="btn btn-ghost btn-sm">Upload photo<input type="file" accept="image/*" id="pf-file" hidden></label>
+            <button type="button" class="btn btn-ghost btn-sm" id="pf-remove-img">Remove photo</button>
+          </div>
+          <label class="lbl-field">…or use an emoji<input name="emoji" maxlength="8"></label>
+          <div class="emoji-picks" id="emoji-picks"></div>
+        </div>
+      </div>
+      <footer class="dlg-foot">
+        <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+        <button type="submit" class="btn btn-primary">Save product</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Category editor -->
+  <dialog class="dlg" id="category-dialog">
+    <form id="category-form">
+      <header class="dlg-head">
+        <h2 id="cf-title">Add category</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Close">✕</button>
+      </header>
+      <div class="dlg-body fields">
+        <label>Name *<input name="name" required maxlength="40"></label>
+        <div class="fields two">
+          <label>Emoji<input name="emoji" maxlength="8" required></label>
+          <label>Tile colour<input name="color" type="color"></label>
+        </div>
+      </div>
+      <footer class="dlg-foot">
+        <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+        <button type="submit" class="btn btn-primary">Save category</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Order detail -->
+  <dialog class="dlg dlg-wide" id="order-dialog"></dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../js/store.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pantry Foods | Sausages, Cold Cuts &amp; Pantry Staples Delivered</title>
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shop.css">
+</head>
+<body>
+  <div class="topstrip">
+    <div class="container topstrip-inner">
+      <span class="proto-pill">Prototype</span>
+      <span id="announcement"></span>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#/" class="logo" aria-label="Pantry Foods home"><img src="assets/logo.svg" alt="Pantry Foods" width="190" height="49"></a>
+
+      <form class="search" id="search-form" role="search">
+        <input type="search" id="search-input" placeholder="Search sausages, patties, rice…" aria-label="Search products">
+        <button type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </button>
+      </form>
+
+      <div class="hotline">
+        <small>Pantry Hotline</small>
+        <strong id="hotline"></strong>
+      </div>
+
+      <a href="#/track" class="account">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+        <span>Account</span>
+      </a>
+
+      <button class="cart-btn" id="cart-btn" aria-label="Open cart">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.5l2.2 11h10.6L21 7.5H6.4"/><circle cx="9.5" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></svg>
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="catnav">
+    <div class="container catnav-inner">
+      <div class="cat-menu">
+        <button class="cat-menu-btn" id="cat-menu-btn" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          Categories <span class="caret">▾</span>
+        </button>
+        <div class="cat-dropdown" id="cat-dropdown"></div>
+      </div>
+      <div class="catnav-links" id="catnav-links"></div>
+      <a href="#/track" class="order-status-btn">Order Status</a>
+    </div>
+  </nav>
+
+  <main id="app"></main>
+
+  <section class="usp">
+    <div class="container usp-grid">
+      <div class="usp-item"><span class="usp-ico">🚚</span><div><b>Delivery</b><small id="usp-delivery"></small></div></div>
+      <div class="usp-item"><span class="usp-ico">❄️</span><div><b>Cold-chain packed</b><small>Insulated cool boxes, door to door</small></div></div>
+      <div class="usp-item"><span class="usp-ico">💳</span><div><b>Multiple payment options</b><small>Cash, card on delivery &amp; bank transfer</small></div></div>
+      <div class="usp-item"><span class="usp-ico">🏬</span><div><b>Store pickup</b><small>Collect from our Colombo 05 outlet</small></div></div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container newsletter-inner">
+      <div>
+        <h3>Subscribe to Pantry Foods</h3>
+        <p>Be the first to know about new products, weekend BBQ deals and recipes.</p>
+      </div>
+      <form id="newsletter-form" class="newsletter-form">
+        <input type="email" placeholder="Your email address" aria-label="Email address" required>
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="assets/logo.svg" alt="Pantry Foods" width="170" height="44" class="footer-logo">
+        <p>Wholesome sausages, cold cuts, patties and pantry staples — made with care and delivered cold.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul id="footer-cats"></ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#/track">Order status</a></li>
+          <li><a href="#/checkout">Checkout</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Head Office</h4>
+        <p>Pantry Foods (Pvt) Ltd<br>Colombo 05, Sri Lanka<br>Hotline: <span id="footer-hotline"></span></p>
+      </div>
+    </div>
+    <div class="container footer-bottom">© 2026 Pantry Foods (Pvt) Ltd · Prototype for review — no real orders or payments.</div>
+  </footer>
+
+  <div class="scrim" id="scrim"></div>
+  <aside class="drawer" id="drawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="drawer-head">
+      <h3>Your cart</h3>
+      <button class="icon-btn" id="drawer-close" aria-label="Close cart">✕</button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+    <div class="drawer-foot" id="drawer-foot"></div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/store.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>
