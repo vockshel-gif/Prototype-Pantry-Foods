@@ -149,7 +149,7 @@ function seed() {
 
   const meta = {
     settings: {
-      hotline: '011 234 5678',
+      hotline: '+94 78 210 0320',
       announcement: 'Delivered cold from our Colombo depot · Track every order live on WhatsApp',
     },
     slots: ['9:00 AM – 12:00 PM', '12:00 PM – 3:00 PM', '3:00 PM – 6:00 PM', '6:00 PM – 9:00 PM'],
